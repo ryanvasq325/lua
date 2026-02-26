@@ -1,21 +1,22 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="/home" class="brand-link">
-            <i class="bi bi-water fa-xl text-primary me-2"></i> <span class="brand-text fw-bold">Baleia</span>
+            <i class="fa-solid fa-meteor fa-lg" style="color: rgb(68, 4, 252);"></i> <span class="brand-text fw-bold" >Lunar</span>
         </a>
     </div>
 
     <div class="sidebar-wrapper">
-        <nav class="mt-2">
-            <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation"
-                aria-label="Main navigation" data-accordion="false" id="navigation">
-
-                <li class="nav-item menu-open"> <a href="#" class="nav-link active">
-                        <i class="nav-icon bi bi-plus"></i>
+        <nav class="mt-3">
+            <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" data-accordion="false" id="navigation">
+                
+                <li class="nav-header text-uppercase small text-muted opacity-75">Administração</li>
+                
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon bi bi-clipboard-data"></i>
                         <p>
                             Cadastros
                             <i class="nav-arrow bi bi-chevron-right"></i>
-                            
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -26,53 +27,68 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/cliente/lista" class="nav-link">
-                                <i class="nav-icon bi bi-people"></i>
-                                <p>Clientes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/fornecedor/lista" class="nav-link">
-                                <i class="nav-icon bi bi-truck"></i>
-                                <p>Fornecedores</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="/empresa/lista" class="nav-link">
                                 <i class="nav-icon bi bi-building"></i>
                                 <p>Empresas</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-header text-uppercase small text-muted opacity-75 mt-3">Comercial</li>
+
+                <li class="nav-item">
+                    <a href="/cliente/lista" class="nav-link">
+                        <i class="nav-icon bi bi-people"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/fornecedor/lista" class="nav-link">
+                        <i class="nav-icon bi bi-truck"></i>
+                        <p>Fornecedores</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/pagamento/lista" class="nav-link">
+                        <i class="nav-icon fa-solid fa-receipt"></i>
+                        <p>Condições de Pagamento</p>
+                    </a>
+                </li>
+
+                <li class="nav-header text-uppercase small text-muted opacity-75 mt-3">Operacional</li>
+
+                <li class="nav-item">
+                    <a href="/produto/lista" class="nav-link">
+                        <i class="nav-icon bi bi-box-seam"></i>
+                        <p>Produtos</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon bi bi-arrow-left-right"></i>
+                        <p>
+                            Movimentações
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/pagamento/lista" class="nav-link">
-                                <i class="fa-solid fa-sack-dollar"></i>
-                                <p>Condição de pagamento</p>
+                            <a href="/venda/lista" class="nav-link">
+                                <i class="nav-icon bi bi-cart-check"></i>
+                                <p>Vendas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/produto/lista" class="nav-link">
-                                <i class="fa-solid fa-basket-shopping"></i>
-                                <p>Produtos</p>
+                            <a href="/ajusteestoque/lista" class="nav-link">
+                                <i class="nav-icon bi bi-stack"></i>
+                                <p>Ajuste de Estoque</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="bi bi-plus"></i>
-                                <p>
-                                    Movimento estoque
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/venda/lista" class="nav-link">
-                                        <i class="bi bi-person-badge-fill"></i>
-                                        <p>Venda</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
+                </li>
+            </ul>
         </nav>
     </div>
 </aside>

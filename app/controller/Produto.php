@@ -119,7 +119,6 @@ class Produto extends Base
                 $value['descricao_curta'],
                 $value['codigo_barra'],
                 $value['valor'],
-                $value['quantidade'],
                 "<div class='d-flex gap-2'>
     <a href='/produto/alterar/{$value['id']}' class='btn btn-warning btn-sm px-2 shadow-sm' style='white-space: nowrap; font-weight: 500;'>
         <i class='bi bi-pencil-square'></i> Alterar

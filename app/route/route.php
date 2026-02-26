@@ -7,6 +7,7 @@ use app\controller\Empresa;
 use app\controller\Fornecedor;
 use app\controller\Home;
 use app\controller\PaymentTerms;
+use app\controller\AdjustmentStock;
 use app\controller\Produto;
 use app\controller\Sale;
 use Slim\Routing\RouteCollectorProxy;
@@ -99,4 +100,9 @@ $app->group('/pagamento', function (RouteCollectorProxy $group) {
     $group->post('/insertinstallment', PaymentTerms::class . ':insertInstallment');
     $group->post('/loaddatainstallments', PaymentTerms::class . ':loaddatainstallments');
     $group->post('/deleteinstallment', PaymentTerms::class . ':deleteinstallment');
+});
+$app->group('/ajusteestoque', function (RouteCollectorProxy $group) {
+    $group->get('/lista', AdjustmentStock::class . ':lista');
+    $group->get('/cadastro', AdjustmentStock::class . ':cadastro');
+    $group->post('/listajusteestoque', AdjustmentStock::class . ':listajusteestoque');
 });
