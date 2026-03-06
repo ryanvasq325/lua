@@ -90,15 +90,13 @@ class Produto extends Base
         $fields = [
             0 => 'id',
             1 => 'nome',
-            3 => 'descricao_curta',
-            2 => 'codigo_barra',
-            4 => 'valor',
+            2 => 'estoque_atual',
         ];
         #Capturamos o nome do campo a ser odernado.
         $orderField = $fields[$order];
         #O termo pesquisado
         $term = $form['search']['value'];
-        $query = SelectQuery::select()->from('view_product');
+        $query = SelectQuery::select()->from('mvw_estoque');
         if (!is_null($term) && ($term !== '')) {
             $query
                 ->where('id', 'ilike', "%{$term}%")
@@ -120,10 +118,13 @@ class Produto extends Base
                 $value['codigo_barra'],
                 $value['valor'],
                 "<div class='d-flex gap-2'>
-    <a href='/produto/alterar/{$value['id']}' class='btn btn-warning btn-sm px-2 shadow-sm' style='white-space: nowrap; font-weight: 500;'>
+    <a href='/produto/alterar/{$value['id']}' class='btn btn-warning'>
         <i class='bi bi-pencil-square'></i> Alterar
     </a>
-    <button type='button' onclick='Delete({$value['id']});' class='btn btn-danger btn-sm px-2 shadow-sm' style='white-space: nowrap; font-weight: 500;'>
+    <button type='button' onclick='AjustarEstoque({$value['id_produto']});' class='btn'>
+        <i class='bi bi-trash-fill'></i> Excluir
+    </button>
+    <button type='button' onclick='Delete({$value['id']});' class='btn btn-danger'>
         <i class='bi bi-trash-fill'></i> Excluir
     </button>
 </div>"
@@ -202,5 +203,11 @@ class Produto extends Base
         } catch (\Exception $e) {
             return $this->SendJson($response, ['status' => false, 'msg' => 'Restrição: ' . $e->getMessage(), 'id' => 0], 500);
         }
+    }
+    public function selecionarestoque($request, $response){
+        $form = $request->getParsedBody();
+        $id = $form['id'];
+        $product = SelectQuery::select()->from(mvw_estoque)
+        return $this->SendJson($response,['status' => true, 'estoque_atual' => 10]);
     }
 }

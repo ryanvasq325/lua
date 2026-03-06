@@ -18,30 +18,6 @@ const tabela = new $('#tabela').DataTable({
     ajax: {
         url: '/produto/listproduto',
         type: 'POST'
-    },
-    columnDefs: [
-        {
-            targets: [4],
-            render: function (data, type, row) {
-                if (type === 'display') {
-                    return parseFloat(data).toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    });
-                }
-                return data;
-            }
-        }
-    ]
-});
-
-// --- LÓGICA DE ATALHOS ---
-document.addEventListener('keydown', function (e) {
-    
-    // F2 - Ir para Cadastro
-    if (e.key === 'F2') {
-        e.preventDefault();
-        window.location.href = '/produto/cadastro';
     }
 });
 
@@ -66,6 +42,11 @@ async function Delete(id) {
         timerProgressBar: true
     });
     tabela.ajax.reload();
+}
+
+async function AjustarEstoque(id) {
+    console.log('AjustarEstoque - ID: ${id}');
+    document.getElementById
 }
 
 window.Delete = Delete;

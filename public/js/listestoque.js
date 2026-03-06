@@ -18,22 +18,7 @@ const tabela = new $('#tabela').DataTable({
      ajax: {
         url: '/ajusteestoque/listajusteestoque',
         type: 'POST'
-    },
-    columnDefs: [
-        {
-            targets: [3],
-            render: function (data, type, row) {
-                if (type === 'display') {
-                    return parseFloat(data).toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    });
-                }
-                return data;
-            }
-        }
-    ]
-    
+    }    
 });
 
 
