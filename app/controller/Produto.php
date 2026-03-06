@@ -3,7 +3,6 @@
 namespace app\controller;
 
 use app\database\builder\InsertQuery;
-use app\database\builder\DeleteQuery;
 use app\database\builder\SelectQuery;
 use app\database\builder\UpdateQuery;
 
@@ -72,7 +71,6 @@ class Produto extends Base
                 'text' => $item['nome'] . ' - Cód. barra: ' . $item['codigo_barra']
             ];
         }
-        #$data['pagination'] = ['more' => true];
         return $this->SendJson($response, $data);
     }
     public function listproduto($request, $response)
@@ -88,7 +86,7 @@ class Produto extends Base
         #Limite de registro a serem retornados do banco de dados LIMIT
         $length = $form['length'];
         $fields = [
-            0 => 'id',
+            0 => 'id_produto',
             1 => 'nome',
             2 => 'estoque_atual',
         ];
@@ -99,11 +97,9 @@ class Produto extends Base
         $query = SelectQuery::select()->from('mvw_estoque');
         if (!is_null($term) && ($term !== '')) {
             $query
-                ->where('id', 'ilike', "%{$term}%")
+                ->where('id_produto', 'ilike', "%{$term}%")
                 ->where('nome', 'ilike', "%{$term}%", 'or')
-                ->where('descricao_curta', 'ilike', "%{$term}%", 'or')
-                ->where('codigo_barra', 'ilike', "%{$term}%", 'or')
-                ->where('valor', 'ilike', "%{$term}%", 'or');
+                ->where('estoque_atual', 'ilike', "%{$term}%", 'or');
         }
         $product = $query
             ->order($orderField, $orderType)
@@ -112,11 +108,9 @@ class Produto extends Base
         $produtoData = [];
         foreach ($product as $key => $value) {
             $produtoData[$key] = [
-                $value['id'],
+                $value['id_produto'],
                 $value['nome'],
-                $value['descricao_curta'],
-                $value['codigo_barra'],
-                $value['valor'],
+                $value['estoque_atual'],
                 "<div class='d-flex gap-2'>
     <a href='/produto/alterar/{$value['id']}' class='btn btn-warning'>
         <i class='bi bi-pencil-square'></i> Alterar
@@ -207,7 +201,7 @@ class Produto extends Base
     public function selecionarestoque($request, $response){
         $form = $request->getParsedBody();
         $id = $form['id'];
-        $product = SelectQuery::select()->from(mvw_estoque)
-        return $this->SendJson($response,['status' => true, 'estoque_atual' => 10]);
+        $product = SelectQuery::select()->from('mvw_estoque')->where('id', '=', $id)->fetch();
+        return $this->SendJson($response,['status' => true, 'estoque_atual' => $product['estoque_atual']]);
     }
 }

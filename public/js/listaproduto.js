@@ -45,8 +45,22 @@ async function Delete(id) {
 }
 
 async function AjustarEstoque(id) {
-    console.log('AjustarEstoque - ID: ${id}');
-    document.getElementById
+    console.log(`AjustarEstoque - ID: ${id}`);
+    document.getElementById('id').value = id;
+
+    //Fas uma requisição para obter os dados do produto
+    const response = await Requests.SetForm('form').Get('/produto/selecionarestoque');
+    if (!response.status) {
+        //Exibe um alerta de produto não encontrado
+        Swal.fire({
+            title: "Produto nao encontrado!",
+            icon: "error",
+            html: response.msg,
+            timer: 3000,
+            timerProgressBar: true
+        });
+        return;
+    }
 }
 
 window.Delete = Delete;
