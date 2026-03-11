@@ -21,9 +21,9 @@
                 <input type="hidden" id="acao" name="acao" value="{{acao}}">
                 <input type="hidden" id="id" name="id" value="{{id}}">
 
-                <div class="card">
-                    <div class="card-header">
-                        <h6 class="m-0 fw-bold text-uppercase small">Dados do Produto</h6>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark">
+                        <h6 class="m-0 fw-bold text-uppercase small text-secondary">Dados do Produto</h6>
                     </div>
 
                     <div class="card-body">
@@ -32,44 +32,47 @@
                                 <label for="nome" class="form-label small fw-bold">Nome do Produto</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-tag-fill"></i></span>
-                                    <input type="text" class="form-control" id="nome" name="nome" 
-                                           placeholder="Ex: Refrigerante Coca-Cola" value="{{produto.nome}}" autofocus required>
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                        placeholder="Ex: Coca-Cola Café 350ml" value="{{produto.nome}}" autofocus
+                                        required>
                                 </div>
                             </div>
 
                             <div class="col-md-8">
                                 <label for="descricao_curta" class="form-label small fw-bold">Descrição Curta</label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                                    <input type="text" class="form-control" id="descricao_curta" name="descricao_curta" 
-                                           placeholder="Ex: COCA LATA 350ML" value="{{produto.descricao_curta}}" required>
+                                    <span class="input-group-text"><i class="bi bi-justify-left"></i></span>
+                                    <input type="text" class="form-control" id="descricao_curta" name="descricao_curta"
+                                        placeholder="Descrição do produto" value="{{produto.descricao_curta}}"
+                                        required>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="codigo_barras" class="form-label small fw-bold">Código de Barras (EAN)</label>
+                                <label for="codigo_barra" class="form-label small fw-bold">Código de Barras
+                                    (EAN)</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
-                                    <input type="text" class="form-control" id="codigo_barra" name="codigo_barra" 
-                                           placeholder="789..." value="{{produto.codigo_barra}}" required>
+                                    <input type="text" class="form-control" id="codigo_barra" name="codigo_barra"
+                                        placeholder="789..." value="{{produto.codigo_barra}}" required>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <label for="preco_custo" class="form-label small fw-bold">Preço de Custo</label>
+                                <label for="valor" class="form-label small fw-bold">Preço de Venda</label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
-                                    <input type="text" class="form-control money-mask" id="valor" name="valor" 
-                                           placeholder="0,00" value="{{produto.valor}}" required>
+                                    <input type="text" class="form-control money-mask" id="valor" name="valor"
+                                        placeholder="0,00" value="{{produto.valor}}" required>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card-footer d-flex justify-content-end">
-                        <button type="button" id="salvar" class="btn btn-primary px-4">
-                            <i class="bi bi-check-circle me-2"></i>
-                            Confirmar Cadastro
+                    <div class="card-footer d-flex justify-content-end bg-dark border-top-0">
+                        <button type="button" id="salvar" class="btn btn-primary px-5 shadow-sm">
+                            <i class="bi bi-save me-2"></i>
+                            Confirmar Dados
                         </button>
                     </div>
                 </div>

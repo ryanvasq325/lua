@@ -45,22 +45,45 @@ async function Delete(id) {
 }
 
 async function AjustarEstoque(id) {
-    console.log(`AjustarEstoque - ID: ${id}`);
-    document.getElementById('id').value = id;
+    try {
+        console.log(`Abrindo modal para ID: ${id}`);
+        document.getElementById('id').value = id;
+        document.getElementById('nova_quantidade').value = '';
+        document.getElementById('quantidade_atual').value = 'Carregando...';
+        const response = await Requests.SetForm('form').Post('/produto/selecionarestoque');
 
-    //Fas uma requisição para obter os dados do produto
-    const response = await Requests.SetForm('form').Get('/produto/selecionarestoque');
-    if (!response.status) {
-        //Exibe um alerta de produto não encontrado
-        Swal.fire({
-            title: "Produto nao encontrado!",
-            icon: "error",
-            html: response.msg,
-            timer: 3000,
-            timerProgressBar: true
-        });
-        return;
+        if (response && response.status) {
+            document.getElementById('quantidade_atual').value = response.estoque_atual;
+
+            $('#modalstock').modal('show');
+        } else {
+            console.error("Erro na resposta do servidor:", response);
+            Swal.fire("Erro", "Produto não encontrado ou sem saldo.", "error");
+        }
+    } catch (error) {
+        console.error("Erro ao abrir modal:", error);
     }
 }
 
+async function NovaQuantidade() {
+    const response = await Requests.SetForm('form').Post('/produto/selecionarestoque');
+
+    if (response.status) {
+        Swal.fire({
+            title: "Sucesso!",
+            text: response.msg,
+            icon: "success",
+            timer: 2000
+        });
+
+        $('#modalstock').modal('hide');
+        tabela.ajax.reload();
+    } else {
+        Swal.fire("Erro", response.msg, "error");
+    }
+}
+
+// IMPORTANTE: Expor para o window porque o DataTables renderiza o HTML dinamicamente
+window.AjustarEstoque = AjustarEstoque;
+window.NovaQuantidade = NovaQuantidade;
 window.Delete = Delete;
