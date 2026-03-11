@@ -21,6 +21,7 @@ final class MvwStockMovement extends AbstractMigration
                             FROM 
                                 stock_movement
                             LEFT JOIN product ON product.id = stock_movement.id_produto
+                            WHERE product.excluido != true
                             GROUP BY 
                                 stock_movement.id_produto,product.nome;
         ");
